@@ -16,13 +16,15 @@ app.get('/', function (req, res) {
 
 app.get('/:query', function(req, res) {
     var date = req.params.query;
+
+    if(NumberLong(date)>=0){
+    	res.send("unix format");
+    }
+
     if(moment(date,"MMMM D, YYYY").isValid()){
     	res.send("natural format");
     }
 
-    if(date>=0){
-    	res.send("unix format");
-    }
 
     console.log(date);
     res.send(date);
