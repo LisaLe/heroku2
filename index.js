@@ -3,8 +3,9 @@ var express = require('express');
 var moment = require('moment');
 var app = express();
 
-app.get('/:query', function(req, res) {
-	var date = req.params.query;
+
+    app.get('/:query', function(req, res) {
+        var date = req.params.query;
         var unix = null;
         var natural = null;
         
@@ -34,9 +35,6 @@ app.get('/:query', function(req, res) {
         // Convert unix timestamp to natural date
         return moment.unix(unix).format("MMMM D, YYYY");
     }
-});
-        
-    
     
     
 
