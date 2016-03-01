@@ -9,6 +9,17 @@ app.get('/', function (req, res) {
 });
 
 
+
+
+
+app.get('/:query', function(req, res) {
+    var date = req.params.query;
+    console.log(date);
+    res.send(date);
+});
+
+
+
 app.listen(app.get('port'), function() {
   console.log('Node app is running on port', app.get('port'));
 });
