@@ -7,7 +7,7 @@ var app = express();
 app.set('port', (process.env.PORT || 5000));
 
 app.get('/', function (req, res) {
-  res.send('Hello World!');
+  res.send('Input parameters for timestamp');
 });
 
 
@@ -19,23 +19,22 @@ app.get('/:query', function(req, res) {
     var unix = null;
     var natural = null;
     if(date>=0){
-    	res.send("unix true");
+    	//res.send("unix true");
     	unix = date;
-    	natural = moment.unix(unix).format("MMMM D, YYYY");
+    	natural = moment.unix(date).format("MMMM D, YYYY");
+
+    	var dateObj = { "unix": unix, "natural": natural };
+        res.send(JSON.stringify(dateObj));
     	
     }
 
     if(moment(date,"MMMM D, YYYY").isValid()){
-    	res.send("natural true");
+    	//res.send("natural true");
     	natural = date;
-    	unix = moment(date,"MMMM D, YYYY").unix();
-    	
+    	unix = moment(date).unix();
+    	var dateObj = { "unix": unix, "natural": natural };
+        res.send(JSON.stringify(dateObj));
     }
-     var dateObj = { "unix": unix, "natural": natural };
-     res.send(JSON.stringify(dateObj));
-
   
 });
-
-
 
