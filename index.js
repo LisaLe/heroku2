@@ -16,18 +16,23 @@ app.get('/', function (req, res) {
 
 app.get('/:query', function(req, res) {
     var date = req.params.query;
-
+    var unix = null;
+    var natural = null;
     if(date>=0){
-    	res.send("unix format");
+    	unix = date;
+    	natural = moment.unix(unix).format("MMMM D, YYYY");
+    	
     }
 
     if(moment(date,"MMMM D, YYYY").isValid()){
+    	natural = date;
+    	unix = moment(date,"MMMM D, YYYY").unix();
     	res.send("natural format");
     }
+     var dateObj = { "unix": unix, "natural": natural };
+     res.send(JSON.stringify(dateObj));
 
-
-    console.log(date);
-    res.send(date);
+  
 });
 
 
