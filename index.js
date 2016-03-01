@@ -19,15 +19,17 @@ app.get('/:query', function(req, res) {
     var unix = null;
     var natural = null;
     if(date>=0){
+    	res.send("unix true");
     	unix = date;
     	natural = moment.unix(unix).format("MMMM D, YYYY");
     	
     }
 
     if(moment(date,"MMMM D, YYYY").isValid()){
+    	res.send("natural true");
     	natural = date;
     	unix = moment(date,"MMMM D, YYYY").unix();
-    	res.send("natural format");
+    	
     }
      var dateObj = { "unix": unix, "natural": natural };
      res.send(JSON.stringify(dateObj));
@@ -37,6 +39,3 @@ app.get('/:query', function(req, res) {
 
 
 
-app.listen(app.get('port'), function() {
-  console.log('Node app is running on port', app.get('port'));
-});
