@@ -17,7 +17,7 @@ app.get('/', function (req, res) {
 app.get('/:query', function(req, res) {
     var date = req.params.query;
 
-    if(NumberLong(date)>=0){
+    if(date>=0){
     	res.send("unix format");
     }
 
