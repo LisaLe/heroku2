@@ -30,7 +30,7 @@ app.get('/:query', function(req, res) {
         res.send(JSON.stringify(dateObj));
     }
   
-});
+})
 
 /*
 
